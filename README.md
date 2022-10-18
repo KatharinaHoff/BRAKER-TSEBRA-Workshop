@@ -15,7 +15,7 @@ Go to https://apphub.wolke.uni-greifswald.de/ in Chrome/Chromium browser. Login 
 Open a terminal window (black symbol with white dollar-underscore sign) and enter (press enter key after typing):
 
 ```
-git clone https://git.rz.uni-greifswald.de/hoffk83/BRAKER-TSEBRA-Workshop.git
+git clone https://github.com/KatharinaHoff/BRAKER-TSEBRA-Workshop.git
 ```
 
 On the left, a folder `BRAKER-TSEBRA-Workshop` will appear in your "file navigator". 
