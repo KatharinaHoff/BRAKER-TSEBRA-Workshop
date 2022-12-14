@@ -8,7 +8,7 @@ This course material is designed to work on resources of University of Greifswal
 
 In intranet (establish VPN connection if necessary, see https://rz.uni-greifswald.de/dienste/technische-infrastruktur/vpn/).
 
-Go to https://apphub.wolke.uni-greifswald.de/ in Chrome/Chromium browser. Login with university credentials. Select "RESPONSE". Note that there is a tiny arrow pointing downwards on the far right of "START". Click on that arrow to expand Advanced options. Select "CPU 8" and "RAM 10GB" before pressing the "START" button. On the bottom of the page, click on "Open" once the instance has booted (will take a little while). Your instance will open in a new browser tab.
+Go to https://apphub.wolke.uni-greifswald.de/ in Chrome/Chromium browser. Login with university credentials. Select "RESPONSE". Note that there is a tiny arrow pointing downwards on the far right of "START". Click on that arrow to expand Advanced options. Select "CPU 6" and "RAM 10GB" before pressing the "START" button. On the bottom of the page, click on "Open" once the instance has booted (will take a little while). Your instance will open in a new browser tab.
 
 ## Clone course materials
 
