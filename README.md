@@ -14,6 +14,14 @@ In intranet (establish VPN connection if necessary, see https://rz.uni-greifswal
 
 Go to https://apphub.wolke.uni-greifswald.de/ in Chrome/Chromium browser. Login with university credentials. Select "RESPONSE". Note that there is a tiny arrow pointing downwards on the far right of "START". Click on that arrow to expand Advanced options. Select "CPU 6" and "RAM 10GB" before pressing the "START" button. On the bottom of the page, click on "Open" once the instance has booted (will take a little while). Your instance will open in a new browser tab.
 
+## Don't have no AppHub access :-(
+
+If you don't have access to our AppHub but you do have a machine with Docker and root permissions, you can run the course container on your own machine as follows:
+
+```
+sudo docker run --rm -it -u 1000:0 -p 8888:8888 katharinahoff/response-notebook:devel
+```
+
 ## Clone course materials
 
 Open a terminal window (black symbol with white dollar-underscore sign) and enter (press enter key after typing):
