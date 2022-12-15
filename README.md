@@ -2,6 +2,10 @@
 
 This repository contains course materials for a workshop on structural genome annotation with BRAKER and TSEBRA
 
+Authors: Katharina Hoff & Lars Gabriel
+
+Contact: katharina.hoff@uni-greifswald.de
+
 ## Go to AppHub
 
 This course material is designed to work on resources of University of Greifswald.
