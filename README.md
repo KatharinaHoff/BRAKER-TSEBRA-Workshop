@@ -22,6 +22,8 @@ If you don't have access to our AppHub but you do have a machine with Docker and
 sudo docker run --rm -it -u 1000:0 -p 8888:8888 katharinahoff/response-notebook:devel
 ```
 
+Click on the link and continue to work in your web browsern (best use Chrome/Chromium).
+
 ## Clone course materials
 
 Open a terminal window (black symbol with white dollar-underscore sign) and enter (press enter key after typing):
@@ -30,7 +32,7 @@ Open a terminal window (black symbol with white dollar-underscore sign) and ente
 git clone https://github.com/KatharinaHoff/BRAKER-TSEBRA-Workshop.git
 ```
 
-On the left, a folder `BRAKER-TSEBRA-Workshop` will appear in your "file navigator". 
+On the left, a folder `BRAKER-TSEBRA-Workshop` will appear in your "file navigator". That folder contains the JupyterNotebook for this course (GenomeAnnotation.ipynb). 
 
 ## Course contents
 
@@ -41,3 +43,7 @@ On the left, a folder `BRAKER-TSEBRA-Workshop` will appear in your "file navigat
    * merging BRAKER1 and BRAKER2 gene sets with TSEBRA
    * BUSCO assessment of predicted gene set
    * preparing an assembly hub for the UCSC Genome Browser with MakeHub 
+   
+## Acknowledgements
+
+Stefan Kemnitz from The University Compute Center at University of Greifswald (https://rz.uni-greifswald.de/dienste/allgemein/sonstiges/high-performance-computing/) kindly assisted in building the docker container.
