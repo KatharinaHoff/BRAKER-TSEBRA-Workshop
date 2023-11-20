@@ -50,17 +50,17 @@ On the left, a folder `BRAKER-TSEBRA-Workshop` will appear in your "file navigat
 
 The idea of a schedule is as follows:
 
-  * 9:00 - Start joining zoom
-  * 9:10 - Welcome & introductions (Padlet Link in Chat)
-  * 9:30 - Lecture on genome annotation with BRAKER & GALBA
-  * 10:30 - Coffee break
-  * 10:45 - Begin hands-on session for beginners
-  * 12:00 - Lunch break
-  * 13:00 - Continue hands-on session for beginners
-  * 14:00 - Coffee break
-  * 14:15 - For advanced learners: annotate *Babesia duncani* chromosome
-  * 15:15 - Wrap up of advanced learners' session
-  * 15:30 - End
+   * 9:00 - Start joining zoom
+   * 9:10 - Welcome & introductions (Padlet Link in Chat)
+   * 9:30 - Lecture on genome annotation with BRAKER & GALBA
+   * 10:30 - Coffee break
+   * 10:45 - Begin hands-on session for beginners
+   * 12:00 - Lunch break
+   * 13:00 - Continue hands-on session for beginners
+   * 14:00 - Coffee break
+   * 14:15 - For advanced learners: annotate *Babesia duncani* chromosome
+   * 15:15 - Wrap up of advanced learners' session
+   * 15:30 - End
 
 ## Acknowledgements
 
