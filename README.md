@@ -36,14 +36,32 @@ On the left, a folder `BRAKER-TSEBRA-Workshop` will appear in your "file navigat
 
 ## Course contents
 
-   * repeat library generation and repeat masking with RepeatModeler2/RepeatMasker
-   * short read RNA-Seq to genome alignment with Hisat2
+   * repeat library generation and repeat masking with RepeatModeler2/RepeatMasker (only theory)
+   * short read RNA-Seq to genome alignment with Hisat2 (only theory)
+   * application of BRAKER3 (structural genome annotation with short read RNA-Seq alignments & protein database)
    * application of BRAKER1 (structural genome annotation with short read RNA-Seq alignments)
-   * application of BRAKER2 (structural genome annotation with protein database)
-   * merging BRAKER1 and BRAKER2 gene sets with TSEBRA
+   * application of BRAKER2 (structural genome annotation with protein database for small & medium sized genomes)
+   * application of GALBA (structural genome annotation with proteins of closely related species in large genomes)
    * BUSCO assessment of predicted gene set
+   * running TSEBRA after BRAKER/GALBA
    * preparing an assembly hub for the UCSC Genome Browser with MakeHub 
-   
+
+## Schedule
+
+The idea of a schedule is as follows:
+
+9:00 - Start joining zoom
+9:10 - Welcome & introductions (Padlet Link in Chat)
+9:30 - Lecture on genome annotation with BRAKER & GALBA
+10:30 - Coffee break
+10:45 - Begin hands-on session for beginners
+12:00 - Lunch break
+13:00 - Continue hands-on session for beginners
+14:00 - Coffee break
+14:15 - For advanced learners: annotate *Babesia duncani* chromosome
+15:15 - Wrap up of advanced learners' session
+15:30 - End
+
 ## Acknowledgements
 
 Stefan Kemnitz from The University Compute Center at University of Greifswald (https://rz.uni-greifswald.de/dienste/allgemein/sonstiges/high-performance-computing/) kindly assisted in building the docker container.
