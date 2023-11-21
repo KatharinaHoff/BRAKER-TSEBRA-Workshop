@@ -1,0 +1,448 @@
+#**********************************************************************************
+#                               BRAKER CONFIGURATION                               
+#**********************************************************************************
+# BRAKER CALL: /opt/BRAKER/scripts/braker.pl --workingdir=BRAKER2 --genome=/opt/BRAKER/example/genome.fa --prot_seq=/opt/BRAKER/example/proteins.fa --AUGUSTUS_BIN_PATH=/usr/bin/ --AUGUSTUS_SCRIPTS_PATH=/usr/share/augustus/scripts/ --threads 6 --gm_max_intergenic 10000 --skipOptimize  # remember to remove both options if you are running a real job
+# Tue Nov 21 12:29:44 2023: braker.pl version 3.0.6
+# Tue Nov 21 12:29:45 2023: Creating directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2.
+# Tue Nov 21 12:29:45 2023: Only Protein input detected, BRAKER will be executed in EP mode (BRAKER2).
+# Tue Nov 21 12:29:45 2023: Configuring of BRAKER for using external tools...
+# Tue Nov 21 12:29:45 2023: Trying to set $AUGUSTUS_CONFIG_PATH...
+# Tue Nov 21 12:29:45 2023: Found environment variable $AUGUSTUS_CONFIG_PATH.
+# Tue Nov 21 12:29:45 2023: Checking /usr/share/augustus/config/ as potential path for $AUGUSTUS_CONFIG_PATH.
+# Tue Nov 21 12:29:45 2023: Success! Setting $AUGUSTUS_CONFIG_PATH to /usr/share/augustus/config/!
+# Tue Nov 21 12:29:45 2023: Trying to set $AUGUSTUS_BIN_PATH...
+# Tue Nov 21 12:29:45 2023: Found command line argument $AUGUSTUS_BIN_PATH.
+# Tue Nov 21 12:29:45 2023: Checking /usr/bin as potential path for $AUGUSTUS_BIN_PATH.
+# Tue Nov 21 12:29:45 2023: Success! Setting $AUGUSTUS_BIN_PATH to /usr/bin!
+# Tue Nov 21 12:29:45 2023: Trying to set $AUGUSTUS_SCRIPTS_PATH...
+# Tue Nov 21 12:29:45 2023: Found command line argument $AUGUSTUS_SCRIPTS_PATH.
+# Tue Nov 21 12:29:45 2023: Checking /usr/share/augustus/scripts as potential path for $AUGUSTUS_SCRIPTS_PATH.
+# Tue Nov 21 12:29:45 2023: Success! Setting $AUGUSTUS_SCRIPTS_PATH to /usr/share/augustus/scripts!
+# Tue Nov 21 12:29:45 2023: Trying to set $PYTHON3_PATH...
+# Tue Nov 21 12:29:45 2023: Did not find environment variable $PYTHON3_PATH.
+# Tue Nov 21 12:29:45 2023: Trying to guess PYTHON3_PATH from location of python3 executable that is available in your $PATH
+# Tue Nov 21 12:29:45 2023: Checking /opt/conda/bin as potential path for $PYTHON3_PATH.
+# Tue Nov 21 12:29:45 2023: Success! Setting $PYTHON3_PATH to /opt/conda/bin!
+# Tue Nov 21 12:29:45 2023: Trying to set $GENEMARK_PATH...
+# Tue Nov 21 12:29:45 2023: Found environment variable $GENEMARK_PATH.
+# Tue Nov 21 12:29:45 2023: Checking /opt/ETP/bin as potential path for $GENEMARK_PATH.
+#*********
+# WARNING: Couldn't find gmes_petap.pl in /opt/ETP/bin. Will not set $GENEMARK_PATH to /opt/ETP/bin!
+#*********
+# Tue Nov 21 12:29:45 2023: Trying to guess GENEMARK_PATH from location of gmes_petap.pl executable that is available in your $PATH
+# Tue Nov 21 12:29:45 2023: Checking /opt/ETP/bin/gmes as potential path for $GENEMARK_PATH.
+# Tue Nov 21 12:29:45 2023: Success! Setting $GENEMARK_PATH to /opt/ETP/bin/gmes!
+# Tue Nov 21 12:29:45 2023: Trying to set $DIAMOND_PATH...
+# Tue Nov 21 12:29:45 2023: Did not find environment variable $DIAMOND_PATH.
+# Tue Nov 21 12:29:45 2023: Trying to guess DIAMOND_PATH from location of diamond executable that is available in your $PATH
+# Tue Nov 21 12:29:45 2023: Checking /opt/ETP/tools as potential path for $DIAMOND_PATH.
+# Tue Nov 21 12:29:45 2023: Success! Setting $DIAMOND_PATH to /opt/ETP/tools!
+# Tue Nov 21 12:29:45 2023: Trying to set $PROTHINT_PATH...
+# Tue Nov 21 12:29:45 2023: Did not find environment variable $PROTHINT_PATH.
+# Tue Nov 21 12:29:45 2023: Trying to guess PROTHINT_PATH from location of prothint.py executable that is available in your $PATH
+# Tue Nov 21 12:29:45 2023: Checking /opt/ETP/bin/gmes/ProtHint/bin as potential path for $PROTHINT_PATH.
+# Tue Nov 21 12:29:45 2023: Success! Setting $PROTHINT_PATH to /opt/ETP/bin/gmes/ProtHint/bin!
+# Tue Nov 21 12:29:45 2023: Trying to set $TSEBRA_PATH...
+# Tue Nov 21 12:29:45 2023: Did not find environment variable $TSEBRA_PATH.
+# Tue Nov 21 12:29:45 2023: Trying to guess TSEBRA_PATH from location of tsebra.py executable that is available in your $PATH
+# Tue Nov 21 12:29:45 2023: Checking /opt/TSEBRA/bin as potential path for $TSEBRA_PATH.
+# Tue Nov 21 12:29:45 2023: Success! Setting $TSEBRA_PATH to /opt/TSEBRA/bin!
+# Tue Nov 21 12:29:45 2023: Trying to set $CDBTOOLS_PATH...
+# Tue Nov 21 12:29:45 2023: Did not find environment variable $CDBTOOLS_PATH.
+# Tue Nov 21 12:29:45 2023: Trying to guess CDBTOOLS_PATH from location of cdbfasta executable that is available in your $PATH
+# Tue Nov 21 12:29:45 2023: Checking /opt/cdbfasta as potential path for $CDBTOOLS_PATH.
+# Tue Nov 21 12:29:45 2023: Success! Setting $CDBTOOLS_PATH to /opt/cdbfasta!
+# Tue Nov 21 12:29:45 2023: BRAKER will execute GeneMark-EP for training GeneMark and generating a training gene set for AUGUSTUS, using protein information as sole extrinsic evidence source.
+#*********
+# IMPORTANT INFORMATION: no species for identifying the AUGUSTUS  parameter set that will arise from this BRAKER run was set. BRAKER will create an AUGUSTUS parameter set with name Sp_2. This parameter set can be used for future BRAKER/AUGUSTUS prediction runs for the same species. It is usually not necessary to retrain AUGUSTUS with novel extrinsic data if a high quality parameter set already exists.
+#*********
+#**********************************************************************************
+#                               CREATING DIRECTORY STRUCTURE                       
+#**********************************************************************************
+# Tue Nov 21 12:29:45 2023: creating file that contains citations for this BRAKER run at /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/what-to-cite.txt...
+# Tue Nov 21 12:29:45 2023: create working directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP.
+mkdir /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP
+# Tue Nov 21 12:29:45 2023: create working directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES.
+mkdir /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES
+# Tue Nov 21 12:29:45 2023: create working directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/species
+mkdir /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/species
+# Tue Nov 21 12:29:45 2023: create working directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors
+mkdir /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors
+# Tue Nov 21 12:29:45 2023: changing into working directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2
+cd /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2
+# Tue Nov 21 12:29:45 2023: getting GC content of the genome
+/opt/BRAKER/scripts/get_gc_content.py --sequences /opt/BRAKER/example/genome.fa --print_sequence_length 1> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/gc_content.out 2> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/gc_content.stderr
+# Tue Nov 21 12:29:45 2023: Creating parameter template files for AUGUSTUS with new_species.pl
+# Tue Nov 21 12:29:45 2023: new_species.pl will create parameter files for species Sp_2 in /usr/share/augustus/config//species/Sp_2
+/usr/bin/perl /usr/share/augustus/scripts/new_species.pl --species=Sp_2 --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ 1> /dev/null 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/new_species.stderr
+# Tue Nov 21 12:29:45 2023: check_fasta_headers(): Checking fasta headers of file /opt/BRAKER/example/genome.fa
+# Tue Nov 21 12:29:45 2023: check_fasta_headers(): Checking fasta headers of file /opt/BRAKER/example/proteins.fa
+# Tue Nov 21 12:29:45 2023: Assuming that this is not a DNA fasta file because other characters than A, T, G, C, N, a, t, g, c, n were contained. If this is supposed to be a DNA fasta file, check the content of your file! If this is supposed to be a protein fasta file, please ignore this message!
+# Tue Nov 21 12:29:45 2023: Assuming that this is not a protein fasta file because other characters than AaRrNnDdCcEeQqGgHhIiLlKkMmFfPpSsTtWwYyVvBbZzJjOoUuXx were contained. If this is supposed to be DNA fasta file, please ignore this message.
+#**********************************************************************************
+#                               PROCESSING HINTS                                   
+#**********************************************************************************
+# Tue Nov 21 12:29:45 2023: Running ProtHint to produce hints from protein sequence file (this may take a couple of hours)...
+# Tue Nov 21 12:29:45 2023: Running Genemark-ES for ProtHint...
+# Tue Nov 21 12:29:45 2023: Executing GeneMark-ES
+# Tue Nov 21 12:29:45 2023: changing into GeneMark-ES directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES
+cd /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES
+# Tue Nov 21 12:29:45 2023: Executing gmes_petap.pl
+/usr/bin/perl /opt/ETP/bin/gmes/gmes_petap.pl --verbose --cores=6 --ES --gc_donor 0.001 --sequence=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome.fa  --soft_mask auto --max_intergenic=10000 1>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/GeneMark-ES.stderr
+# Tue Nov 21 12:31:20 2023: change to working directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2
+cd /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2
+# Tue Nov 21 12:31:20 2023: Calling prothint.py...
+# Tue Nov 21 12:31:20 2023: starting prothint.py
+/opt/ETP/bin/gmes/ProtHint/bin/prothint.py --threads=6 --geneMarkGtf /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES/genemark.gtf /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome.fa /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/proteins.fa
+# Tue Nov 21 12:32:25 2023: Appending hints from /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/prothint_augustus.gff to /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hintsfile.gff
+# Tue Nov 21 12:32:25 2023: Generating hints with ProtHint finished.
+# Tue Nov 21 12:32:25 2023: Preparing hints for running GeneMark
+# Tue Nov 21 12:32:25 2023: Filtering intron hints for GeneMark from /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hintsfile.gff...
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genemark_hintsfile.gff.prot | sort -n -k 4,4 | sort -s -n -k 5,5 | sort -s -k 3,3 | sort -s -k 1,1 | /usr/share/augustus/scripts/join_mult_hints.pl > /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genemark_hintsfile.gff.prot.tmp
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genemark_hintsfile.gff.prot.tmp /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genemark_hintsfile.gff
+#**********************************************************************************
+#                              RUNNING GENEMARK-EX                                 
+#**********************************************************************************
+# Tue Nov 21 12:32:26 2023: Preparing genemark_evidence file hints from manual hints...
+# Tue Nov 21 12:32:26 2023: Checking whether file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genemark_hintsfile.gff contains enough hints and sufficient multiplicity information...
+# Tue Nov 21 12:32:26 2023: Running GeneMark-EP
+# Tue Nov 21 12:32:26 2023: changing into GeneMark-EP directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP
+cd /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP
+# Tue Nov 21 12:32:26 2023: Running gmes_petap.pl
+/usr/bin/perl /opt/ETP/bin/gmes/gmes_petap.pl --verbose --seq /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome.fa --EP /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genemark_hintsfile.gff --cores=6  --gc_donor 0.001 --evidence /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genemark_evidence.gff  --soft_mask auto --max_intergenic=10000 1>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/GeneMark-EP.stderr
+# Tue Nov 21 12:33:41 2023: change to working directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2
+cd /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2
+# Tue Nov 21 12:33:41 2023: Filtering output of GeneMark for generating training genes for AUGUSTUS
+# Tue Nov 21 12:33:41 2023: Checking whether hintsfile contains single exon CDSpart hints or start/stop hints
+# Tue Nov 21 12:33:41 2023: sorting GeneMark predictions in /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.gtf
+/opt/conda/bin/python3 /opt/BRAKER/scripts/sortGeneMark.py /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.gtf > /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.gtf.sorted 2> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/sortGeneMark.err
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.gtf.sorted /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.gtf
+# Tue Nov 21 12:33:41 2023: filtering GeneMark genes by intron hints
+/usr/bin/perl /opt/BRAKER/scripts/filterGenemark.pl --genemark=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.gtf --hints=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hintsfile.gff --randomSeed=1 1>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/filterGenemark.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/filterGenemark.stderr
+# Tue Nov 21 12:33:41 2023: Ensuring at least 4000 genes in training file 
+/opt/conda/bin/python3 /opt/BRAKER/scripts/ensure_n_training_genes.py --goodGenes /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.f.good.gtf --badGenes /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.f.bad.gtf --N 4000 1>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/ensure_min_n_training_genes.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/ensure_min_n_training_genes.stderr
+#Tue Nov 21 12:33:41 2023: downsampling good genemark genes according to poisson distribution with Lambda 2:
+/usr/bin/perl /opt/BRAKER/scripts/downsample_traingenes.pl --in_gtf=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.f.good.gtf --out_gtf=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.d.gtf --lambda=2 1> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/downsample_traingenes.log 2> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/downsample_traingenes.err
+#**********************************************************************************
+#                               TRAIN AUGUSTUS                                     
+#**********************************************************************************
+# Tue Nov 21 12:33:41 2023: training AUGUSTUS
+# Tue Nov 21 12:33:41 2023: creating softlink from /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.gtf to /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/traingenes.gtf.
+ln -s /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.gtf /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/traingenes.gtf
+# Tue Nov 21 12:33:41 2023: Converting gtf file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/traingenes.gtf to genbank file
+# Tue Nov 21 12:33:41 2023: Computing flanking region size for AUGUSTUS training genes
+# Tue Nov 21 12:33:41 2023: create genbank file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb
+/usr/bin/perl /usr/share/augustus/scripts/gff2gbSmallDNA.pl /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/traingenes.gtf /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome.fa 930 /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/traingenes.gtf_gff2gbSmallDNA.stderr
+#*********
+# INFORMATION: the size of flanking region used in this BRAKER run is 930. You might need this value if you later add a UTR training on top of an already existing BRAKER run.
+#*********
+# Tue Nov 21 12:33:41 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb contains 277 genes.
+#  Tue Nov 21 12:33:41 2023: concatenating good and downsampled GeneMark training genes to /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/good_genes.lst.
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.d.gtf > /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/good_genes.lst
+# Tue Nov 21 12:33:41 2023: Filtering train.gb for "good" mRNAs:
+/usr/bin/perl /usr/share/augustus/scripts/filterGenesIn_mRNAname.pl /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/good_genes.lst /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb > /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.f.gb 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/filterGenesIn_mRNAname.stderr
+# Tue Nov 21 12:33:41 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.f.gb contains 202 genes.
+# Tue Nov 21 12:33:41 2023: Running etraining to catch gene structure inconsistencies:
+/usr/bin/etraining --species=Sp_2 --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.f.gb 1> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/gbFilterEtraining.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/gbFilterEtraining.stderr
+# Tue Nov 21 12:33:42 2023: Filtering /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.f.gb file to remove inconsistent gene structures...
+/usr/bin/perl /usr/share/augustus/scripts/filterGenes.pl /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/etrain.bad.lst /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.f.gb 1> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.ff.gb 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/etrainFilterGenes.stderr
+# Tue Nov 21 12:33:42 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.ff.gb contains 201 genes.
+# Tue Nov 21 12:33:42 2023: BLAST or DIAMOND training gene structures against themselves:
+/usr/bin/perl /usr/share/augustus/scripts/aa2nonred.pl /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/traingenes.good.fa /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/traingenes.good.nr.fa --DIAMOND_PATH=/opt/ETP/tools --cores=6 --diamond 1> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aa2nonred.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/aa2nonred.stderr
+# Tue Nov 21 12:33:42 2023: Filtering nonredundant loci into /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.fff.gb:
+/usr/bin/perl /usr/share/augustus/scripts/filterGenesIn.pl /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/nonred.loci.lst /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.ff.gb 1> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.fff.gb 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/filterGenesIn.stderr
+# Tue Nov 21 12:33:42 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.fff.gb contains 200 genes.
+# Tue Nov 21 12:33:42 2023: Moving /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.fff.gb to /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb:
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.fff.gb /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb
+# Tue Nov 21 12:33:42 2023: Splitting genbank file into train and test file
+#*********
+# WARNING: Number of reliable training genes is low (200). Recommended are at least 600 genes
+#*********
+/usr/bin/perl /usr/share/augustus/scripts/randomSplit.pl /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb 66 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/randomSplit.stderr
+# Tue Nov 21 12:33:42 2023: /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.test will be used for measuring AUGUSTUS accuracy after training
+# Tue Nov 21 12:33:42 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.test contains 66 genes.
+# Tue Nov 21 12:33:42 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.train contains 134 genes.
+/usr/bin/perl /usr/share/augustus/scripts/randomSplit.pl /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.train 66 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/randomSplit.stderr
+# Tue Nov 21 12:33:42 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.train.train contains 68 genes.
+# Tue Nov 21 12:33:42 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.train.test contains 66 genes.
+# Tue Nov 21 12:33:42 2023: /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.train.test will be used or measuring AUGUSTUS accuracy during training with optimize_augustus.pl
+ /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.train.train will be used for running etraining in optimize_augustus.pl (together with train.gb.train.test)
+ /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.train will be used for running etraining (outside of optimize_augustus.pl)
+# Tue Nov 21 12:33:42 2023: Setting value of "stopCodonExcludedFromCDS" in /usr/share/augustus/config//species/Sp_2/Sp_2_parameters.cfg to "true"
+# Tue Nov 21 12:33:42 2023: first etraining
+/usr/bin/etraining --species=Sp_2 --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.train 1>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/firstetraining.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/firstetraining.stderr
+grep -c "exon doesn't end in stop codon" /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/firstetraining.stderr
+# Tue Nov 21 12:33:42 2023: Error rate of missing stop codon is 0.940298507462687
+# Tue Nov 21 12:33:42 2023: The appropriate value for "stopCodonExcludedFromCDS" seems to be "false".
+# Tue Nov 21 12:33:42 2023: Setting value of "stopCodonExcludedFromCDS" in /usr/share/augustus/config//species/Sp_2/Sp_2_parameters.cfg to "false"
+# Tue Nov 21 12:33:42 2023: Running etraining again
+/usr/bin/etraining --species=Sp_2 --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.train 1>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/firstetraining.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/firstetraining.stderr
+# Tue Nov 21 12:33:43 2023: Adjusting stop-codon frequencies in species_parameters.cfg according to /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/firstetraining.stdout
+# Tue Nov 21 12:33:43 2023: Setting frequency of stop codons to tag=0.216, taa=0.351, tga=0.433.
+# Tue Nov 21 12:33:43 2023: First AUGUSTUS accuracy test
+/usr/bin/augustus --species=Sp_2 --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.test 1>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/firsttest.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/firsttest.stderr
+# Tue Nov 21 12:33:48 2023: Computing accuracy of AUGUSTUS prediction (in test file derived from predictions on training data set stored in /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/firsttest.stdout)
+# Tue Nov 21 12:33:48 2023: The accuracy after initial training (no optimize_augustus.pl, no CRF) is 0.7444
+# Tue Nov 21 12:33:48 2023: Second etraining
+/usr/bin/etraining --species=Sp_2 --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.train 1>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/secondetraining.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/secondetraining.stderr
+# Tue Nov 21 12:33:48 2023: Second AUGUSTUS accuracy test
+/usr/bin/augustus --species=Sp_2 --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.test >/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/secondtest.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/secondtest.stderr
+# Tue Nov 21 12:33:54 2023: Computing accuracy of AUGUSTUS prediction (in test file derived from predictions on training data set stored in /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/secondtest.stdout)
+# Tue Nov 21 12:33:54 2023: The accuracy after training (after optimize_augustus.pl, no CRF) is 0.7444
+# Tue Nov 21 12:33:54 2023: Copying optimized parameters to working directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/species
+cp -r /usr/share/augustus/config//species/Sp_2 /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/species
+#**********************************************************************************
+#                               PREDICTING GENES WITH AUGUSTUS (NO UTRS)           
+#**********************************************************************************
+# Tue Nov 21 12:33:54 2023: RUNNING AUGUSTUS
+# Tue Nov 21 12:33:54 2023: Preparing genome for running AUGUSTUS in parallel
+# Tue Nov 21 12:33:54 2023: Creating directory for storing AUGUSTUS files (hints, temporarily) /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome_split.
+# Tue Nov 21 12:33:54 2023: splitting genome file in smaller parts for parallel execution of AUGUSTUS prediction
+/usr/bin/perl /usr/share/augustus/scripts/splitMfasta.pl /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome.fa --outputpath=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome_split 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/splitMfasta.stderr
+cd /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome_split; for f in genome.split.*; do NAME=`grep ">" $f`; mv $f ${NAME#>}.fa; done; cd ..
+# Tue Nov 21 12:33:54 2023: Split genome file in 8 parts, finished.
+# Tue Nov 21 12:33:54 2023: copy extrinsic file /opt/BRAKER/scripts/cfg/ep.cfg to working directory
+cp /opt/BRAKER/scripts/cfg/ep.cfg /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/species/Sp_2/ex1.cfg
+# Tue Nov 21 12:33:54 2023: Making AUGUSTUS jobs with hintsfile /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hintsfile.gff, cfgFile /opt/BRAKER/scripts/cfg/ep.cfg, UTR status off, and hintId hints
+# Tue Nov 21 12:33:54 2023: Creating directory for storing AUGUSTUS files (hints, temporarily) /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp.
+# Tue Nov 21 12:33:54 2023: creating /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints.lst for AUGUSTUS jobs
+# Tue Nov 21 12:33:54 2023: creating AUGUSTUS jobs (with hints)
+cd /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2
+/usr/bin/perl /usr/share/augustus/scripts/createAugustusJoblist.pl --sequences=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints.lst --wrap="#!/bin/bash" --overlap=500000 --chunksize=2500000 --outputdir=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp --joblist=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hints.job.lst --jobprefix=aug_hints_ --partitionHints --command "/usr/bin/augustus --species=Sp_2 --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ --extrinsicCfgFile=/opt/BRAKER/scripts/cfg/ep.cfg --alternatives-from-evidence=true --UTR=off --exonnames=on --codingseq=on --allow_hinted_splicesites=gcag,atac  --softmasking=1" 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/createAugustusJoblist_hints.stderr
+cd ..
+# Tue Nov 21 12:33:54 2023: Running AUGUSTUS jobs from /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hints.job.lst
+# Tue Nov 21 12:33:54 2023: Running AUGUSTUS job 1
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_1
+# Tue Nov 21 12:33:54 2023: Running AUGUSTUS job 2
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_2
+# Tue Nov 21 12:33:54 2023: Running AUGUSTUS job 3
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_3
+# Tue Nov 21 12:33:54 2023: Running AUGUSTUS job 4
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_4
+# Tue Nov 21 12:33:54 2023: Running AUGUSTUS job 5
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_5
+# Tue Nov 21 12:33:54 2023: Running AUGUSTUS job 6
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_6
+# Tue Nov 21 12:33:54 2023: Running AUGUSTUS job 7
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_7
+# Tue Nov 21 12:34:04 2023: Running AUGUSTUS job 8
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_8
+# Tue Nov 21 12:34:15 2023: Joining AUGUSTUS predictions in directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp
+# Tue Nov 21 12:34:15 2023: Concatenating AUGUSTUS output files in /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/3.001.X7.fa.1..125100.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/2.001.X6.fa.1..125100.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/1.001.X8.fa.1..124361.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/8.001.X4.fa.1..125100.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/7.001.X1.fa.1..125040.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/5.001.X5.fa.1..125100.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/6.001.X3.fa.1..125100.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/4.001.X2.fa.1..125100.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+/usr/bin/perl /usr/share/augustus/scripts/join_aug_pred.pl < /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff > /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gff
+# Tue Nov 21 12:34:15 2023: Deleting /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp
+# Tue Nov 21 12:34:15 2023: Deleting /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+# Tue Nov 21 12:34:15 2023: deleting files from AUGUSTUS parallelization
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_6
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_2
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_5
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_7
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_3
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_1
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_4
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_8
+# Tue Nov 21 12:34:15 2023: Making a gtf file from /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gff | /usr/bin/perl -ne 'if(m/\tAUGUSTUS\t/) {print $_;}' | /usr/bin/perl /usr/share/augustus/scripts/gtf2gff.pl --printExon --out=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.tmp.gtf 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/gtf2gff.augustus.hints.gtf.stderr
+# Tue Nov 21 12:34:15 2023: Making a fasta file with protein sequences of /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gtf
+/opt/conda/bin/python3 /usr/share/augustus/scripts/getAnnoFastaFromJoingenes.py -g /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome.fa -f /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gtf -o /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints 1> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/getAnnoFastaFromJoingenes.augustus.hints_tmp.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/getAnnoFastaFromJoingenes.augustus.hints_tmp.stderr
+# Tue Nov 21 12:34:16 2023: Making a fasta file with protein sequences of /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gtf
+/opt/conda/bin/python3 /usr/share/augustus/scripts/getAnnoFastaFromJoingenes.py -g /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome.fa -f /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gtf -o /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints 1> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/getAnnoFastaFromJoingenes.augustus.hints_hints.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/getAnnoFastaFromJoingenes.augustus.hints_hints.stderr
+# Tue Nov 21 12:34:16 2023: AUGUSTUS prediction complete
+# Tue Nov 21 12:34:16 2023: Trying to create merged gene set from GeneMark-EX and AUGUSTUS predictions (braker.gtf/braker.utr.gtf)...
+# Tue Nov 21 12:34:16 2023: Trying to create combined gene set with TSEBRA...
+/opt/TSEBRA/bin/tsebra.py --keep_gtf /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gtf,/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.f.multi_anchored.gtf,/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.f.single_anchored.gtf --cfg /opt/TSEBRA/bin/../config/braker3.cfg --out /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/braker.gtf -q 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/tsebra.stderr
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/braker.gtf /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/braker.gtf_temp
+# Tue Nov 21 12:34:17 2023: Making a fasta file with protein sequences of /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/braker.gtf
+/opt/conda/bin/python3 /usr/share/augustus/scripts/getAnnoFastaFromJoingenes.py -g /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome.fa -f /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/braker.gtf -o /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/braker 1> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/getAnnoFastaFromJoingenes.braker_.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/getAnnoFastaFromJoingenes.braker_.stderr
+#**********************************************************************************
+#              PREDICTING GENES WITH AUGUSTUS (NO UTRS, ITERATION 2)               
+#**********************************************************************************
+# Tue Nov 21 12:34:17 2023: Moving augustus hints predictions from iteration 1
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gtf /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints_iter1.gtf
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gff /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints_iter1.gff
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.aa /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints_iter1.aa
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.codingseq /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints_iter1.codingseq
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/Spaln/spaln.gff /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/Spaln/spaln_iter1.gff
+# Tue Nov 21 12:34:17 2023: Running ProtHint again with additional seeds from augustus.hints.gtf to produce more hints from protein sequence file (this may take a couple of hours)...
+# Tue Nov 21 12:34:17 2023: Calling prothint.py...
+# Tue Nov 21 12:34:17 2023: starting prothint.py
+/opt/ETP/bin/gmes/ProtHint/bin/prothint.py --threads=6 --geneSeeds /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints_iter1.gtf --prevGeneSeeds /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES/genemark.gtf --prevSpalnGff /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/Spaln/spaln_iter1.gff /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome.fa /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/proteins.fa
+# Tue Nov 21 12:34:58 2023: Removing first iteration ProtHint hints from /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hintsfile.gff
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hintsfile.gff /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hintsfile_iter1.gff
+# Tue Nov 21 12:34:58 2023: Appending hints from /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/prothint_augustus.gff to /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hintsfile.gff
+# Tue Nov 21 12:34:58 2023: Generating hints with ProtHint iteration 2 finished.
+# Tue Nov 21 12:34:58 2023: RUNNING AUGUSTUS
+# Tue Nov 21 12:34:58 2023: Skipping splitMfasta.pl because genome file has already been split.
+# Tue Nov 21 12:34:58 2023: copy extrinsic file /opt/BRAKER/scripts/cfg/ep.cfg to working directory
+cp /opt/BRAKER/scripts/cfg/ep.cfg /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/species/Sp_2/ex1.cfg
+# Tue Nov 21 12:34:58 2023: Making AUGUSTUS jobs with hintsfile /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hintsfile.gff, cfgFile /opt/BRAKER/scripts/cfg/ep.cfg, UTR status off, and hintId hints
+# Tue Nov 21 12:34:59 2023: Creating directory for storing AUGUSTUS files (hints, temporarily) /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp.
+# Tue Nov 21 12:34:59 2023: creating /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints.lst for AUGUSTUS jobs
+# Tue Nov 21 12:34:59 2023: creating AUGUSTUS jobs (with hints)
+cd /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2
+/usr/bin/perl /usr/share/augustus/scripts/createAugustusJoblist.pl --sequences=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints.lst --wrap="#!/bin/bash" --overlap=500000 --chunksize=2500000 --outputdir=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp --joblist=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hints.job.lst --jobprefix=aug_hints_ --partitionHints --command "/usr/bin/augustus --species=Sp_2 --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ --extrinsicCfgFile=/opt/BRAKER/scripts/cfg/ep.cfg --alternatives-from-evidence=true --UTR=off --exonnames=on --codingseq=on --allow_hinted_splicesites=gcag,atac  --softmasking=1" 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/createAugustusJoblist_hints.stderr
+cd ..
+# Tue Nov 21 12:34:59 2023: Running AUGUSTUS jobs from /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hints.job.lst
+# Tue Nov 21 12:34:59 2023: Running AUGUSTUS job 1
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_1
+# Tue Nov 21 12:34:59 2023: Running AUGUSTUS job 2
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_2
+# Tue Nov 21 12:34:59 2023: Running AUGUSTUS job 3
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_3
+# Tue Nov 21 12:34:59 2023: Running AUGUSTUS job 4
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_4
+# Tue Nov 21 12:34:59 2023: Running AUGUSTUS job 5
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_5
+# Tue Nov 21 12:34:59 2023: Running AUGUSTUS job 6
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_6
+# Tue Nov 21 12:34:59 2023: Running AUGUSTUS job 7
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_7
+# Tue Nov 21 12:35:10 2023: Running AUGUSTUS job 8
+/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_8
+# Tue Nov 21 12:35:21 2023: Joining AUGUSTUS predictions in directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp
+# Tue Nov 21 12:35:21 2023: Concatenating AUGUSTUS output files in /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/4.001.X2.fa.1..125100.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/5.001.X5.fa.1..125100.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/7.001.X1.fa.1..125040.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/6.001.X3.fa.1..125100.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/8.001.X4.fa.1..125100.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/1.001.X8.fa.1..124361.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/2.001.X6.fa.1..125100.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp/3.001.X7.fa.1..125100.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+/usr/bin/perl /usr/share/augustus/scripts/join_aug_pred.pl < /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff > /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gff
+# Tue Nov 21 12:35:21 2023: Deleting /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus_tmp
+# Tue Nov 21 12:35:21 2023: Deleting /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.tmp1.gff
+# Tue Nov 21 12:35:21 2023: deleting files from AUGUSTUS parallelization
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_6
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_2
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_5
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_7
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_3
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_1
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_4
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints_8
+# Tue Nov 21 12:35:21 2023: Making a gtf file from /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gff | /usr/bin/perl -ne 'if(m/\tAUGUSTUS\t/) {print $_;}' | /usr/bin/perl /usr/share/augustus/scripts/gtf2gff.pl --printExon --out=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.tmp.gtf 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/gtf2gff.augustus.hints.gtf.stderr
+# Tue Nov 21 12:35:21 2023: Making a fasta file with protein sequences of /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gtf
+/opt/conda/bin/python3 /usr/share/augustus/scripts/getAnnoFastaFromJoingenes.py -g /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome.fa -f /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gtf -o /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints 1> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/getAnnoFastaFromJoingenes.augustus.hints_tmp.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/getAnnoFastaFromJoingenes.augustus.hints_tmp.stderr
+# Tue Nov 21 12:35:21 2023: Making a fasta file with protein sequences of /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gtf
+/opt/conda/bin/python3 /usr/share/augustus/scripts/getAnnoFastaFromJoingenes.py -g /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome.fa -f /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gtf -o /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints 1> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/getAnnoFastaFromJoingenes.augustus.hints_hints.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/getAnnoFastaFromJoingenes.augustus.hints_hints.stderr
+# Tue Nov 21 12:35:22 2023: AUGUSTUS prediction complete
+# Tue Nov 21 12:35:22 2023: Trying to create merged gene set from GeneMark-EX and AUGUSTUS predictions (braker.gtf/braker.utr.gtf)...
+# Tue Nov 21 12:35:22 2023: Trying to create combined gene set with TSEBRA...
+/opt/TSEBRA/bin/tsebra.py --keep_gtf /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gtf,/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.f.multi_anchored.gtf,/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.f.single_anchored.gtf --cfg /opt/TSEBRA/bin/../config/braker3.cfg --out /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/braker.gtf -q 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/tsebra.stderr
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/braker.gtf /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/braker.gtf_temp
+# Tue Nov 21 12:35:22 2023: Making a fasta file with protein sequences of /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/braker.gtf
+/opt/conda/bin/python3 /usr/share/augustus/scripts/getAnnoFastaFromJoingenes.py -g /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome.fa -f /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/braker.gtf -o /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/braker 1> /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/getAnnoFastaFromJoingenes.braker_.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/getAnnoFastaFromJoingenes.braker_.stderr
+# Tue Nov 21 12:35:23 2023: deleting empty files
+# Tue Nov 21 12:35:23 2023: find /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2 -empty
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/getAnnoFastaFromJoingenes.augustus.hints_hints.stdout
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/downsample_traingenes.log
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/getAnnoFastaFromJoingenes.augustus.hints_tmp.stdout
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/getAnnoFastaFromJoingenes.braker_.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/tsebra_rename.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/splitMfasta.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/gtf2gff.augustus.hints.gtf.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/sortGeneMark.err
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/getAnnoFastaFromJoingenes.augustus.hints_hints.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/find_python3_re.err
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/firstetraining.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/secondtest.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/secondetraining.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/filterGenemark.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/filterGenesIn.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/find_python3_biopython.err
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/GeneMark-ES.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/traingenes.gtf_gff2gbSmallDNA.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/randomSplit.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/createAugustusJoblist_hints.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/downsample_traingenes.err
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/new_species.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/etrainFilterGenes.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/getAnnoFastaFromJoingenes.augustus.hints_tmp.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/GeneMark-EP.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/filterGenesIn_mRNAname.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/firsttest.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/tsebra.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/errors/gc_content.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/ensure_min_n_training_genes.stdout
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/getAnnoFastaFromJoingenes.braker_.stdout
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.f.bad.gtf
+# Tue Nov 21 12:35:23 2023: deleting job lst files (if existing)
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.f.gb
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/traingenes.good.gtf
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aug_hints.lst
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.train.train
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.test
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/good_genes.lst
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/aa2nonred.stdout
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/etrain.bad.lst
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.train
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/secondetraining.stdout
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/nonred.loci.lst
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hints.job.lst
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/firstetraining.stdout
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb.train.test
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/gbFilterEtraining.stdout
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/traingenes.gtf
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.ff.gb
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/traingenes.good.fa
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.tmp.gtf
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/traingenes.good.nr.fa
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/gene_stat.yaml
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/nuc.fasta
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/prothint_augustus.gff
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/top_chains.gff
+rm -r /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/diamond
+rm -r /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/Spaln
+/usr/bin/perl /opt/BRAKER/scripts/braker_cleanup.pl --wdir=/home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/firsttest.stdout
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genome.fa
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/secondtest.stdout
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/train.gb
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES/gmes.log
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES/run.cfg
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES.stdout
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/filterGenemark.stdout
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.d.gtf
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.f.good.gtf
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.c.gtf
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/genemark.average_gene_length.out
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/gmes.log
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/run.cfg
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP.stdout
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints.gff
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints_iter1.aa
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints_iter1.codingseq
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints_iter1.gff
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/augustus.hints_iter1.gtf
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/cmd.log
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/hintsfile_iter1.gff
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/prevHints.gff
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/proteins.fa
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/seed_proteins.faa
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/uniqueSeeds.gtf
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/braker.gtf_temp
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genemark_hintsfile.gff
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/gc_content.out
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/evidence.gff
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/genemark_evidence.gff
+Deleting directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES/data
+Deleting directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES/info
+Deleting directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES/output
+Deleting directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-ES/run
+Deleting directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/data
+Deleting directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/info
+Deleting directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/output
+Deleting directory /home/jovyan/BRAKER-TSEBRA-Workshop/BRAKER2/GeneMark-EP/run
+#**********************************************************************************
+#                               BRAKER RUN FINISHED                                
+#**********************************************************************************
