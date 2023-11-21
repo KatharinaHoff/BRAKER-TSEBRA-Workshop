@@ -1,0 +1,279 @@
+#**********************************************************************************
+#                               GALBA CONFIGURATION                               
+#**********************************************************************************
+# GALBA CALL: /opt/GALBA/scripts/galba.pl --workingdir=GALBA --genome=/opt/BRAKER/example/genome.fa --prot_seq=/opt/GALBA/example/proteins.fa --AUGUSTUS_BIN_PATH=/usr/bin/ --AUGUSTUS_SCRIPTS_PATH=/usr/share/augustus/scripts/ --threads 6 --skipOptimize  # remember to remove both options if you are running a real job
+# Tue Nov 21 12:36:05 2023: galba.pl version 1.0.9
+# Tue Nov 21 12:36:05 2023: Creating directory /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA.
+# Tue Nov 21 12:36:05 2023: Configuring of GALBA for using external tools...
+# Tue Nov 21 12:36:05 2023: Found environment variable $AUGUSTUS_CONFIG_PATH. Setting $AUGUSTUS_CONFIG_PATH to /usr/share/augustus/config/
+# Tue Nov 21 12:36:05 2023: Setting $AUGUSTUS_BIN_PATH to command line argument --AUGUSTUS_BIN_PATH value /usr/bin.
+# Tue Nov 21 12:36:05 2023: Setting $AUGUSTUS_SCRIPTS_PATH to command line argument --AUGUSTUS_SCRIPTS_PATH value /usr/share/augustus/scripts.
+# Tue Nov 21 12:36:05 2023: Did not find environment variable $PYTHON3_PATH
+# Tue Nov 21 12:36:05 2023: Trying to guess $PYTHON3_PATH from location of python3 executable that is available in your $PATH
+# Tue Nov 21 12:36:05 2023: Setting $PYTHON3_PATH to /opt/conda/bin
+# Tue Nov 21 12:36:05 2023: Did not find environment variable $DIAMOND_PATH
+# Tue Nov 21 12:36:05 2023: Trying to guess $DIAMOND_PATH from location of diamond executable that is available in your $PATH
+# Tue Nov 21 12:36:05 2023: Setting $DIAMOND_PATH to /opt/ETP/tools
+# Tue Nov 21 12:36:05 2023: Did not find environment variable $MINIPROT_PATH (either variable does not exist, or the path given in variable does not exist). Will try to set this variable in a different way, later.
+# Tue Nov 21 12:36:05 2023: Trying to guess $MINIPROT_PATH from location of Miniprot executable in your $PATH
+# Tue Nov 21 12:36:05 2023: Setting $MINIPROT_PATH to /opt/miniprot
+# Tue Nov 21 12:36:05 2023: Did not find environment variable $SCORER_PATH (either variable does not exist, or the path given in variable does not exist). Will try to set this variable in a different way, later.
+# Tue Nov 21 12:36:05 2023: Trying to guess $SCORER_PATH from location of miniprot_boundary_scorer executable that is available in your $PATH
+# Tue Nov 21 12:36:05 2023: Setting $SCORER_PATH to /opt/miniprot-boundary-scorer
+# Tue Nov 21 12:36:05 2023: Did not find environment variable $MINIPROTHINT_PATH (either variable does not exist, or the path given in variable does not exist). Will try to set this variable in a different way, later.
+# Tue Nov 21 12:36:05 2023: Trying to guess $MINIPROTHINT_PATH from location of miniprothint.py executable that is available in your $PATH
+# Tue Nov 21 12:36:05 2023: Setting $MINIPROTHINT_PATH to /opt/miniprothint
+# Tue Nov 21 12:36:05 2023: Did not find environment variable $CDBTOOLS_PATH
+# Tue Nov 21 12:36:05 2023: Trying to guess $CDBTOOLS_PATH from location of cdbfasta executable that is available in your $PATH
+# Tue Nov 21 12:36:05 2023: Setting $CDBTOOLS_PATH to /opt/cdbfasta
+# Tue Nov 21 12:36:05 2023: Did not find environment variable $TSEBRA_PATH
+# Tue Nov 21 12:36:05 2023: Trying to guess $TSEBRA_PATH from location of tsebra.py executable that is available in your $PATH
+# Tue Nov 21 12:36:05 2023: Setting $TSEBRA_PATH to /opt/TSEBRA/bin
+#*********
+# IMPORTANT INFORMATION: no species for identifying the AUGUSTUS  parameter set that will arise from this GALBA run was set. GALBA will create an AUGUSTUS parameter set with name Sp_FJUz47qBCn. This parameter set can be used for future GALBA/AUGUSTUS prediction runs for the same species. It is usually not necessary to retrain AUGUSTUS with novel extrinsic data if a high quality parameter set already exists.
+#*********
+#**********************************************************************************
+#                               CREATING DIRECTORY STRUCTURE                       
+#**********************************************************************************
+# Tue Nov 21 12:36:05 2023: creating file that contains citations for this GALBA run at /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/what-to-cite.txt...
+# Tue Nov 21 12:36:05 2023: create working directory /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/species
+mkdir /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/species
+# Tue Nov 21 12:36:05 2023: create working directory /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors
+mkdir /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors
+# Tue Nov 21 12:36:06 2023: changing into working directory /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA
+cd /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA
+# Tue Nov 21 12:36:06 2023: Creating parameter template files for AUGUSTUS with new_species.pl
+# Tue Nov 21 12:36:06 2023: new_species.pl will create parameter files for species Sp_FJUz47qBCn in /usr/share/augustus/config//species/Sp_FJUz47qBCn
+/usr/bin/perl /usr/share/augustus/scripts/new_species.pl --species=Sp_FJUz47qBCn --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ 1> /dev/null 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/new_species.stderr
+# Tue Nov 21 12:36:06 2023: check_fasta_headers(): Checking fasta headers of file /opt/BRAKER/example/genome.fa
+# Tue Nov 21 12:36:06 2023: check_fasta_headers(): Checking fasta headers of file /opt/GALBA/example/proteins.fa
+# Tue Nov 21 12:36:06 2023: Assuming that this is not a DNA fasta file because other characters than A, T, G, C, N, a, t, g, c, n were contained. If this is supposed to be a DNA fasta file, check the content of your file! If this is supposed to be a protein fasta file, please ignore this message!
+#**********************************************************************************
+#            PROCESSING HINTS AND GENERATING TRAINING GENES                        
+#**********************************************************************************
+# Tue Nov 21 12:36:06 2023: Making protein hints
+# Tue Nov 21 12:36:06 2023: Changing to /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA
+cd /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA
+# Tue Nov 21 12:36:06 2023: running Miniprot to produce protein to genome alignments, first producing genome index:
+/opt/miniprot/miniprot -t6 -d /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/genome.mpi /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/genome.fa> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/miniprot_index.stdout 2>>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/miniprot.stderr
+# Tue Nov 21 12:36:06 2023: running Miniprot to produce protein to genome alignments in aln format
+/opt/miniprot/miniprot -I -ut6 --outn=1 --aln /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/genome.mpi /opt/GALBA/example/proteins.fa >> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/protein_alignment_miniprot.aln 2>> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/miniprot.stderr
+# Tue Nov 21 12:36:06 2023: Alignments from file /opt/GALBA/example/proteins.fa created.
+# Tue Nov 21 12:36:06 2023: /opt/miniprot-boundary-scorer/miniprot_boundary_scorer -o /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/miniprot.gff -s /opt/miniprot-boundary-scorer/blosum62.csv < /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/protein_alignment_miniprot.aln 
+# Tue Nov 21 12:36:07 2023: /opt/miniprothint/miniprothint.py /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/miniprot.gff --workdir /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA --ignoreCoverage --topNperSeed 10 --minScoreFraction 0.5
+# Tue Nov 21 12:36:08 2023: moving /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/miniprot.gtf to /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/protein_alignment_miniprot.gff
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/miniprot.gtf /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/protein_alignment_miniprot.gff
+# Tue Nov 21 12:36:08 2023: Converting alignments from file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/protein_alignment_miniprot.gff to hints
+# Tue Nov 21 12:36:08 2023: Converting protein alignment file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/protein_alignment_miniprot.gff to hints for AUGUSTUS
+/usr/bin/perl /opt/GALBA/scripts/aln2hints.pl --in=/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/protein_alignment_miniprot.gff --out=/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_hintsfile.aln2hints.temp.gff --prg=miniprot --priority=4
+# Tue Nov 21 12:36:08 2023: concatenating protein hints from /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_hintsfile.aln2hints.temp.gff to /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_align_out.temp.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_hintsfile.aln2hints.temp.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_align_out.temp.gff
+# Tue Nov 21 12:36:08 2023: Checking for hints of src=C and with grp tags that should not be joined according to multiplicity
+# Tue Nov 21 12:36:08 2023: Joining hints that are identical (& from the same source) into multiplicity hints (input file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/tmp_merge_hints.gff)
+# Tue Nov 21 12:36:08 2023: sort hints of type prot
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/tmp_merge_hints.gff | sort -n -k 4,4 | sort -s -n -k 5,5 | sort -s -n -k 3,3 | sort -s -k 1,1 >/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hints.prot.temp.sort.gff
+# Tue Nov 21 12:36:08 2023: join multiple hints
+/usr/bin/perl /usr/share/augustus/scripts/join_mult_hints.pl </home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hints.prot.temp.sort.gff >/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/tmp_merge_hints.gff 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/join_mult_hints.prot.stderr
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/tmp_merge_hints.gff /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_align_out.temp.gff
+# Tue Nov 21 12:36:08 2023: moving /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_align_out.temp.gff to /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_align_out.gff
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_align_out.temp.gff /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_align_out.gff
+Deleting /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_align_out.temp.gff
+# Tue Nov 21 12:36:08 2023: joining hints files -> appending /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_align_out.gff to /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hintsfile.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_align_out.gff >> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hintsfile.gff
+# Tue Nov 21 12:36:08 2023: Deleting /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_align_out.gff
+# Tue Nov 21 12:36:08 2023: Moving /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hintsfile.gff to /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hintsfile.tmp.gff to enable sorting
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hintsfile.gff /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hintsfile.tmp.gff
+# Tue Nov 21 12:36:08 2023: Sorting hints file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hintsfile.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hintsfile.tmp.gff | sort -n -k 4,4 | sort -s -n -k 5,5 | sort -s -n -k 3,3 | sort -s -k 1,1 > /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hintsfile.gff
+# Tue Nov 21 12:36:08 2023: Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hintsfile.tmp.gff
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hintsfile.tmp.gff
+#  Tue Nov 21 12:36:08 2023: using training genes from miniprothint 
+ln -s /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/miniprot_trainingGenes.gtf /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/traingenes.gtf
+# Tue Nov 21 12:36:08 2023: rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hintsfile.gff.
+#**********************************************************************************
+#                            TRAINING AUGUSTUS                                     
+#**********************************************************************************
+# Tue Nov 21 12:36:08 2023: training AUGUSTUS
+# Tue Nov 21 12:36:08 2023: Converting gtf file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/traingenes.gtf to genbank file
+# Tue Nov 21 12:36:08 2023: Computing flanking region size for AUGUSTUS training genes
+# Tue Nov 21 12:36:08 2023: create genbank file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb
+/usr/bin/perl /usr/share/augustus/scripts/gff2gbSmallDNA.pl /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/traingenes.gtf /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/genome.fa 1001 /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb 1> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/gff2gbSmallDNA.stderr 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/gff2gbSmallDNA.stderr
+#*********
+# INFORMATION: the size of flanking region used in this GALBA run is 1001
+#*********
+# Tue Nov 21 12:36:08 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb contains 259 genes.
+# Tue Nov 21 12:36:08 2023: Setting value of "stopCodonExcludedFromCDS" in /usr/share/augustus/config//species/Sp_FJUz47qBCn/Sp_FJUz47qBCn_parameters.cfg to "true"
+# Tue Nov 21 12:36:08 2023: Running etraining to catch gene structure inconsistencies:
+/usr/bin/etraining --species=Sp_FJUz47qBCn --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb 1> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/gbFilterEtraining.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/gbFilterEtraining.stderr
+# Tue Nov 21 12:36:08 2023: Filtering /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb file to remove inconsistent gene structures...
+/usr/bin/perl /usr/share/augustus/scripts/filterGenes.pl /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/etrain.bad.lst /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb 1> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.ff.gb 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/etrainFilterGenes.stderr
+# Tue Nov 21 12:36:08 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.ff.gb contains 228 genes.
+# Tue Nov 21 12:36:08 2023: BLAST or DIAMOND training gene structures against themselves:
+/usr/bin/perl /usr/share/augustus/scripts/aa2nonred.pl /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/traingenes.good.fa /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/traingenes.good.nr.fa --DIAMOND_PATH=/opt/ETP/tools --cores=6 --diamond 1> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/aa2nonred.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/aa2nonred.stderr
+# Tue Nov 21 12:36:09 2023: Filtering nonredundant loci into /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.fff.gb:
+/usr/bin/perl /usr/share/augustus/scripts/filterGenesIn.pl /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/nonred.loci.lst /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.ff.gb 1> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.fff.gb 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/filterGenesIn.stderr
+# Tue Nov 21 12:36:09 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.fff.gb contains 226 genes.
+# Tue Nov 21 12:36:09 2023: Moving /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.fff.gb to /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb:
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.fff.gb /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb
+# Tue Nov 21 12:36:09 2023: Splitting genbank file into train and test file
+#*********
+# WARNING: Number of reliable training genes is low (226). Recommended are at least 600 genes
+#*********
+/usr/bin/perl /usr/share/augustus/scripts/randomSplit.pl /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb 75 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/randomSplit.stderr
+# Tue Nov 21 12:36:09 2023: /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.test will be used for measuring AUGUSTUS accuracy after training
+# Tue Nov 21 12:36:09 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.test contains 75 genes.
+# Tue Nov 21 12:36:09 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.train contains 151 genes.
+/usr/bin/perl /usr/share/augustus/scripts/randomSplit.pl /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.train 75 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/randomSplit.stderr
+# Tue Nov 21 12:36:09 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.train.train contains 76 genes.
+# Tue Nov 21 12:36:09 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.train.test contains 75 genes.
+# Tue Nov 21 12:36:09 2023: /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.train.test will be used or measuring AUGUSTUS accuracy during training with optimize_augustus.pl
+ /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.train.train will be used for running etraining in optimize_augustus.pl (together with train.gb.train.test)
+ /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.train will be used for running etraining (outside of optimize_augustus.pl)
+# Tue Nov 21 12:36:09 2023: first etraining
+/usr/bin/etraining --species=Sp_FJUz47qBCn --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.train 1>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/firstetraining.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/firstetraining.stderr
+grep -c "exon doesn't end in stop codon" /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/firstetraining.stderr
+# Tue Nov 21 12:36:09 2023: Error rate of missing stop codon is 0
+# Tue Nov 21 12:36:09 2023: Adjusting stop-codon frequencies in species_parameters.cfg according to /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/firstetraining.stdout
+# Tue Nov 21 12:36:09 2023: Setting frequency of stop codons to tag=0.146, taa=0.391, tga=0.464.
+# Tue Nov 21 12:36:09 2023: first AUGUSTUS accuracy test
+/usr/bin/augustus --species=Sp_FJUz47qBCn --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.test >/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/firsttest.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/firsttest.stderr
+# Tue Nov 21 12:36:15 2023: Computing accuracy of AUGUSTUS prediction (in test file derived from predictions on training data set stored in /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/firsttest.stdout)
+# Tue Nov 21 12:36:15 2023: The accuracy in round first is 0.748333333333333
+# Tue Nov 21 12:36:15 2023: RUNNING AUGUSTUS
+# Tue Nov 21 12:36:15 2023: AUGUSTUS with hints
+# Tue Nov 21 12:36:15 2023: copy extrinsic file /opt/GALBA/scripts/cfg/galba.cfg to working directory
+cp /opt/GALBA/scripts/cfg/galba.cfg /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/species/Sp_FJUz47qBCn/ex1.cfg
+/opt/conda/bin/python3 /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/pygustus_hints.py 1> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/pygustus_hints.out 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/pygustus_hints.err
+# Tue Nov 21 12:36:56 2023: AUGUSTUS prediction complete
+# Tue Nov 21 12:36:56 2023: Making a gtf file from /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gff | /usr/bin/perl -ne 'if(m/\tAUGUSTUS\t/) {print $_;}' | /usr/bin/perl /usr/share/augustus/scripts/gtf2gff.pl --printExon --out=/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.tmp.gtf 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/gtf2gff.augustus.hints.gtf.stderr
+# Tue Nov 21 12:36:56 2023: Converting gtf file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gtf to genbank file
+# Tue Nov 21 12:36:56 2023: create genbank file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb
+/usr/bin/perl /usr/share/augustus/scripts/gff2gbSmallDNA.pl --good /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/good_training_genes.lst /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gtf /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/genome.fa 1001 /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb 1> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/gff2gbSmallDNA.stderr 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/gff2gbSmallDNA.stderr
+#*********
+# INFORMATION: the size of flanking region used in this GALBA run is 1001
+#*********
+# Tue Nov 21 12:36:56 2023: Splitting genbank file into train and test file
+#*********
+# WARNING: Number of reliable training genes is low (226). Recommended are at least 600 genes
+#*********
+/usr/bin/perl /usr/share/augustus/scripts/randomSplit.pl /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb 75 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/randomSplit.stderr
+# Tue Nov 21 12:36:56 2023: /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.test will be used for measuring AUGUSTUS accuracy after training
+# Tue Nov 21 12:36:56 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.test contains 75 genes.
+# Tue Nov 21 12:36:56 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.train contains 151 genes.
+/usr/bin/perl /usr/share/augustus/scripts/randomSplit.pl /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.train 75 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/randomSplit.stderr
+# Tue Nov 21 12:36:56 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.train.train contains 76 genes.
+# Tue Nov 21 12:36:56 2023: Genbank format file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.train.test contains 75 genes.
+# Tue Nov 21 12:36:56 2023: /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.train.test will be used or measuring AUGUSTUS accuracy during training with optimize_augustus.pl
+ /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.train.train will be used for running etraining in optimize_augustus.pl (together with train2.gb.train.test)
+ /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.train will be used for running etraining (outside of optimize_augustus.pl)
+# Tue Nov 21 12:36:56 2023: first etraining
+/usr/bin/etraining --species=Sp_FJUz47qBCn --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.train 1>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/firstetraining.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/firstetraining.stderr
+# Tue Nov 21 12:36:56 2023: second AUGUSTUS accuracy test
+/usr/bin/augustus --species=Sp_FJUz47qBCn --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.test >/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/secondtest.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/secondtest.stderr
+# Tue Nov 21 12:37:02 2023: Computing accuracy of AUGUSTUS prediction (in test file derived from predictions on training data set stored in /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/secondtest.stdout)
+# Tue Nov 21 12:37:02 2023: The accuracy in round second is 0.7722
+# Tue Nov 21 12:37:02 2023: Third etraining
+/usr/bin/etraining --species=Sp_FJUz47qBCn --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.train 1>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/secondetraining.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/secondetraining.stderr
+# Tue Nov 21 12:37:03 2023: third AUGUSTUS accuracy test
+/usr/bin/augustus --species=Sp_FJUz47qBCn --AUGUSTUS_CONFIG_PATH=/usr/share/augustus/config/ /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.test >/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/thirdtest.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/thirdtest.stderr
+# Tue Nov 21 12:37:09 2023: Computing accuracy of AUGUSTUS prediction (in test file derived from predictions on training data set stored in /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/thirdtest.stdout)
+# Tue Nov 21 12:37:09 2023: The accuracy in round third is 0.7722
+#**********************************************************************************
+#                               PREDICTING GENES WITH AUGUSTUS (NO UTRS)           
+#**********************************************************************************
+# Tue Nov 21 12:37:09 2023: RUNNING AUGUSTUS
+# Tue Nov 21 12:37:09 2023: AUGUSTUS with hints
+# Tue Nov 21 12:37:09 2023: copy extrinsic file /opt/GALBA/scripts/cfg/galba.cfg to working directory
+cp /opt/GALBA/scripts/cfg/galba.cfg /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/species/Sp_FJUz47qBCn/ex1.cfg
+/opt/conda/bin/python3 /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/pygustus_hints.py 1> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/pygustus_hints.out 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/pygustus_hints.err
+# Tue Nov 21 12:38:15 2023: AUGUSTUS prediction complete
+# Tue Nov 21 12:38:15 2023: Making a gtf file from /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gff
+cat /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gff | /usr/bin/perl -ne 'if(m/\tAUGUSTUS\t/) {print $_;}' | /usr/bin/perl /usr/share/augustus/scripts/gtf2gff.pl --printExon --out=/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.tmp.gtf 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/gtf2gff.augustus.hints.gtf.stderr
+# Tue Nov 21 12:38:15 2023: Making a fasta file with protein sequences of /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gtf
+/opt/conda/bin/python3 /usr/share/augustus/scripts/getAnnoFastaFromJoingenes.py -g /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/genome.fa -f /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gtf -o /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints 1> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/getAnnoFastaFromJoingenes.augustus.hints_tmp.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/getAnnoFastaFromJoingenes.augustus.hints_tmp.stderr
+# Tue Nov 21 12:38:16 2023: fixing AUGUSTUS genes with in frame stop codons...
+/opt/conda/bin/python3 /usr/share/augustus/scripts/fix_in_frame_stop_codon_genes.py -g /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/genome.fa -t /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gtf -b /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/bad_genes.lst -o augustus.hints_fix_ifs_ -s Sp_FJUz47qBCn -m off --UTR off --print_utr off -a /usr/share/augustus/config/ -C /opt/cdbfasta -A /usr/bin -S /usr/share/augustus/scripts -H /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hintsfile.gff -e /opt/GALBA/scripts/cfg/galba.cfg  > /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/fix_in_frame_stop_codon_genes_augustus.hints.log 2> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/fix_in_frame_stop_codon_genes_augustus.hints.err
+# Tue Nov 21 12:38:17 2023: Moving gene prediction file without in frame stop codons to location of original file (overwriting it)...
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints_fix_ifs_.gtf /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gtf
+# Tue Nov 21 12:38:17 2023: Deleting file with genes with in frame stop codons...
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/bad_genes.lst
+# Tue Nov 21 12:38:17 2023: Making a fasta file with protein sequences of /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gtf
+/opt/conda/bin/python3 /usr/share/augustus/scripts/getAnnoFastaFromJoingenes.py -g /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/genome.fa -f /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gtf -o /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints 1> /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/getAnnoFastaFromJoingenes.augustus.hints_hints.stdout 2>/home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/getAnnoFastaFromJoingenes.augustus.hints_hints.stderr
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gtf /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/galba.gtf
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.aa /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/galba.aa
+mv /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.codingseq /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/galba.codingseq
+# IMPORTANT INFORMATION: the final output files 
+of this GALBA run are galba.gtf, galba.codingseq, and galba.aa
+These files are exact copies auf augustus.hints predictions.
+# Tue Nov 21 12:38:17 2023: deleting empty files
+# Tue Nov 21 12:38:17 2023: find /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA -empty
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/getAnnoFastaFromJoingenes.augustus.hints_hints.stdout
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/tmp_no_merge_hints.gff
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/highAlIntrons.gff
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/fix_in_frame_stop_codon_genes_augustus.hints.log
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/gtf2gff.augustus.hints.gtf.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/pygustus_hints.err
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/fix_in_frame_stop_codon_genes_augustus.hints.err
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/getAnnoFastaFromJoingenes.augustus.hints_hints.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/find_python3_re.err
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/firstetraining.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/secondetraining.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/filterGenesIn.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/find_python3_biopython.err
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/randomSplit.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/new_species.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/etrainFilterGenes.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/join_mult_hints.prot.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/getAnnoFastaFromJoingenes.augustus.hints_tmp.stderr
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/errors/find_python3_pygustus.err
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/miniprot_index.stdout
+# Tue Nov 21 12:38:17 2023: deleting job lst files (if existing)
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/fix_IFS_log_ckbdxnvg
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.train.train
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.test
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/aa2nonred.stdout
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/etrain.bad.lst
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.train
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/prot_hintsfile.aln2hints.temp.gff
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/secondetraining.stdout
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/nonred.loci.lst
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/good_training_genes.lst
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/firstetraining.stdout
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb.train.test
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/gbFilterEtraining.stdout
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/traingenes.gtf
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.ff.gb
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/traingenes.good.fa
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.tmp.gtf
+rm /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/traingenes.good.nr.fa
+python3 /opt/GALBA/scripts/galba_cleanup.py --wdir /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/firsttest.stdout
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/genome.fa
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/secondtest.stdout
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train.gb
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/genome.fa.cidx
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/getAnnoFastaFromJoingenes.augustus.hints_tmp.stdout
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/traingenes.good.gtf
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/genome.mpi
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/pygustus_hints.out
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/pygustus_hints.py
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/gff2gbSmallDNA.stderr
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/miniprot_representatives.gff
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/protein_alignment_miniprot.aln
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/protein_alignment_miniprot.gff
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/hc.gff
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/miniprothint.gff
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/thirdtest.stdout
+Deleting file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/miniprot_trainingGenes.gff
+Moving file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/augustus.hints.gff to archive directory
+Moving file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.train.test to archive directory
+Moving file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.train.train to archive directory
+Moving file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.test to archive directory
+Moving file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb.train to archive directory
+Moving file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/train2.gb to archive directory
+Moving file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/miniprot_representatives.gtf to archive directory
+Moving file /home/jovyan/BRAKER-TSEBRA-Workshop/GALBA/miniprot.gff to archive directory
+#**********************************************************************************
+#                               GALBA RUN FINISHED                                
+#**********************************************************************************
